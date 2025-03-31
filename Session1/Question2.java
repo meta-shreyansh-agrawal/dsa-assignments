@@ -30,6 +30,4 @@ public class Question2 {
         }
         return false; 
     }
-    
-
 }
