@@ -50,7 +50,7 @@ public class Question3 {
                 powSum += temp.power; 
                 temp = temp.next; 
             }
-            degree += powSum; 
+            degree = Math.max(powSum,degree); 
             head = head.next; 
         }
         return degree; 
