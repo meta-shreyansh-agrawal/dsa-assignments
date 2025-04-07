@@ -22,6 +22,7 @@ public class Utils {
             }
         }
     }
+
     public static int inputNaturalNumber(Scanner sc){
         while(true){
             try{
@@ -37,6 +38,19 @@ public class Utils {
                 sc.nextLine(); 
             }catch(IllegalArgumentException e){
                 System.out.println("Enter natural number"); 
+                sc.nextLine(); 
+            }
+        }
+    }
+
+    public static int inputInteger(Scanner sc){
+        while(true){
+            try {
+                int num = sc.nextInt(); 
+                sc.nextLine(); 
+                return num; 
+            } catch (Exception e) {
+                System.out.println("Enter Integer");
                 sc.nextLine(); 
             }
         }
