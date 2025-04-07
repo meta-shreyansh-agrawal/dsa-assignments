@@ -1,26 +1,23 @@
-package Question1; 
-
-import java.util.*;
-
+package Question1;
 
 public class InfixExpressionEvaluator {
 
-    public static int evaluate(String expression, Map<String, Integer> variables) {
+    public static int evaluate(String expression) {
         StackInterface<Integer> operands = new ArrayStack<>();
         StackInterface<String> operators = new ArrayStack<>();
 
         String[] tokens = expression.split(" ");
+
         for (String token : tokens) {
             if (isInteger(token)) {
-                operands.push(Integer.parseInt(token));
-            } else if (variables.containsKey(token)) {
-                operands.push(variables.get(token));
+                operands.push(Integer.parseInt(token)); // pushing integer into stack
             } else if (isOperator(token)) {
+                // is operator of lower presedence is input then all operators of higher presedence are evaluated
                 while (!operators.isEmpty() && hasHigherPrecedence(operators.peek(), token)) {
-                    processOperator(operators, operands);
+                    processOperator(operators, operands); 
                 }
                 operators.push(token);
-            } else if (token.equals("(")) {
+            } else if (token.equals("(")) { // Case for curved brackets
                 operators.push(token);
             } else if (token.equals(")")) {
                 while (!operators.peek().equals("(")) {
@@ -30,6 +27,7 @@ public class InfixExpressionEvaluator {
             }
         }
 
+        // Evaluate remaining operators
         while (!operators.isEmpty()) {
             processOperator(operators, operands);
         }
@@ -37,6 +35,7 @@ public class InfixExpressionEvaluator {
         return operands.pop();
     }
 
+    // Check if the token is an integer or not
     private static boolean isInteger(String token) {
         try {
             Integer.parseInt(token);
@@ -46,15 +45,18 @@ public class InfixExpressionEvaluator {
         }
     }
 
+    // Check if the token is an operator
     private static boolean isOperator(String token) {
         return "+-*/==!=<><=>>=&&||!".contains(token);
     }
 
+    // Compare precedence
     private static boolean hasHigherPrecedence(String op1, String op2) {
-        return getPrecedence(op1) > getPrecedence(op2) || 
+        return getPrecedence(op1) > getPrecedence(op2) ||
                (getPrecedence(op1) == getPrecedence(op2) && isLeftAssociative(op1));
     }
 
+    // Assign precedence to each operator
     private static int getPrecedence(String operator) {
         switch (operator) {
             case "||": return 1;
@@ -68,10 +70,12 @@ public class InfixExpressionEvaluator {
         }
     }
 
+    // For left-only operators, e.g., !
     private static boolean isLeftAssociative(String operator) {
         return !operator.equals("!");
     }
 
+    // Evaluate the operator with the left and right operand
     private static void processOperator(StackInterface<String> operators, StackInterface<Integer> operands) {
         String operator = operators.pop();
         int right = operands.pop();
@@ -99,7 +103,6 @@ public class InfixExpressionEvaluator {
 
     public static void main(String[] args) {
         String expression = "3 + 5 * ( 10 - 4 )";
-        Map<String, Integer> variables = new HashMap<>(); // Add variables if needed
-        System.out.println(evaluate(expression, variables)); // Output: 33
+        System.out.println(evaluate(expression));
     }
 }
