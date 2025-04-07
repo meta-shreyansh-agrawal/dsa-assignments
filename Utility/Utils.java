@@ -15,7 +15,7 @@ public class Utils {
                 }
             }catch(InputMismatchException e){
                 System.out.println("Enter valid Number"); 
-                sc.nextLine(); 
+                sc.nextLine();
             }catch(IllegalArgumentException e){
                 System.out.println("Enter number between "+start+" and "+end); 
                 sc.nextLine(); 

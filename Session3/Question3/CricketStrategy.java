@@ -26,6 +26,7 @@ public class CricketStrategy {
         System.out.print("Enter the total number of balls Virat will play: ");
         int ballsToPlay = Utils.inputNaturalNumber(scanner);
 
+        // using priority queue to get the stragety sequence of bowlers
         System.out.println("Bowling order:");
         while (ballsToPlay > 0 && !priorityQueue.isEmpty()) {
             Bowler currentBowler = priorityQueue.poll();

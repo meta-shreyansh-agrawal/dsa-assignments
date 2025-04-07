@@ -23,7 +23,7 @@ public class Bowler extends IdObject implements Comparable<Bowler> {
         return this.name; 
     }
 
-    // Comparision basis is Ascending order based on balls
+    // Comparision basis is Descending order based on balls
     @Override
     public int compareTo(Bowler other) {
         return Integer.compare(other.balls, this.balls);  
