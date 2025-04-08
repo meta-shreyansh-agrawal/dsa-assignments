@@ -1,5 +1,7 @@
 package Question1;
 
+import java.util.Scanner;
+
 public class InfixExpressionEvaluator {
 
     public static int evaluate(String expression) {
@@ -101,8 +103,37 @@ public class InfixExpressionEvaluator {
         operands.push(result);
     }
 
+    private static boolean isValidExpressionParenthesis(String expression) {
+
+        int parenthesesCount = 0;
+        String[] tokens = expression.split(" ");
+
+        for (String token : tokens) {
+            if (token.equals("(")) {
+                parenthesesCount++;
+            } else if (token.equals(")")) {
+                parenthesesCount--;
+                if (parenthesesCount < 0) {
+                    return false; // if closing parenthesis more than the opening parenthesis
+                }
+            } 
+        }
+        // equal parenthesis or not
+        return parenthesesCount == 0; 
+    }
+
+
     public static void main(String[] args) {
-        String expression = "3 + 5 * ( 10 - 4 )";
-        System.out.println(evaluate(expression));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter an infix expression (with space-separated tokens):");
+        String expression = scanner.nextLine();
+
+        if (isValidExpressionParenthesis(expression)) {
+            int result = evaluate(expression);
+            System.out.println("The result of the expression is: " + result);
+        } else {
+            System.out.println("The expression is invalid.");
+        }
+        scanner.close();
     }
 }
