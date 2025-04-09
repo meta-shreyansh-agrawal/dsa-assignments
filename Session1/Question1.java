@@ -23,26 +23,34 @@ public class Question1 {
         System.out.println("null");
     }
 
-    // rotating the list
     public static Node rotateSubList(Node head, int L, int R, int N) {
-        if (head == null) return head;
-        Node a = head;
-        for (int i = 0; i < L - 2; i++) {
-            a = a.next;
-        }
-        Node b = a;
-        for (int i = 0; i < N; i++) {
-            b = b.next;
-        }
-        Node c = head;
-        for (int i = 0; i < R - 1; i++) {
-            c = c.next;
-        }
+        if (head == null || L >= R) return head;
+        
+        int sublistLength = R - L + 1;
+        N %= sublistLength;
+        if (N == 0) return head;
+    
+        Node dummy = new Node(0); 
+        dummy.next = head;
+        Node a = dummy; 
+        for (int i = 0; i < L - 1; i++) a = a.next;
+    
+        Node b = a.next; // First node of sublist
+        Node c = b; 
+        for (int i = 0; i < sublistLength - 1; i++) c = c.next;
+    
         Node d = c.next;
-        c.next = a.next;
-        a.next = b.next;
-        b.next = d;
-        return head;
+    
+        Node newHead = b;
+        for (int i = 0; i < sublistLength - N; i++) newHead = newHead.next;
+    
+        c.next = b; 
+        a.next = newHead;
+        for (int i = 0; i < sublistLength - N - 1; i++) b = b.next;
+        b.next = d; 
+    
+        // Return modified list
+        return dummy.next; 
     }
 
     public static void main(String[] args) {
