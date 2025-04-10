@@ -43,6 +43,26 @@ public class Utils {
         }
     }
 
+    public static int inputWholeNumber(Scanner sc){
+        while(true){
+            try{
+                int num = sc.nextInt(); 
+                if(num<0){
+                    throw new IllegalArgumentException(); 
+                }else{
+                    sc.nextLine(); 
+                    return num; 
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Enter valid Number"); 
+                sc.nextLine(); 
+            }catch(IllegalArgumentException e){
+                System.out.println("Enter natural number"); 
+                sc.nextLine(); 
+            }
+        }
+    }
+
     public static int inputInteger(Scanner sc){
         while(true){
             try {
