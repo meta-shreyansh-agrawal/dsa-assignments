@@ -51,6 +51,6 @@ public class Sorting {
         Set<Employee> set = new HashSet<>(employees);
         System.out.println("All unique Employees");
         for(Employee emp: set)emp.print(); 
-        
+        sc.close();
     }
 }
