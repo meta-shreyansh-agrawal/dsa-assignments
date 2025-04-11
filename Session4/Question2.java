@@ -1,9 +1,9 @@
-package Session4.Question2;
+package Session4;
 
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class UniqueChar {
+public class Question2 {
     public static void printMap(HashMap<Character,Integer> map){
         for(HashMap.Entry<Character,Integer> entry: map.entrySet()){
             System.out.println("key: "+entry.getKey()+"\tValue: "+entry.getValue());
