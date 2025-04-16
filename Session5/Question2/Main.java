@@ -1,4 +1,4 @@
-package Session5;
+package Session5.Question2;
 
 import java.util.Scanner;
 
