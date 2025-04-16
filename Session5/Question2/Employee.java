@@ -1,10 +1,10 @@
 package Session5.Question2; 
 
-class Employee implements Comparable<Employee> {
+public class Employee implements Comparable<Employee> {
     private final String name;
     private int age;
     private double salary;
-    Employee next;
+    public Employee next;
     
     public String getName() {
         return name;

@@ -2,7 +2,7 @@ package Session5.Question2;
 
 public class EmployeeLinkedList {
 
-    Employee head; 
+    public Employee head; 
 
     public void insert(String name, int age , int salary){
         Employee emp = new Employee(name, age, salary); 
@@ -14,7 +14,7 @@ public class EmployeeLinkedList {
         }
     }
 
-    void sort() {
+    public void sort() {
         if (head == null || head.next == null) return; // Empty or single node list
         Employee sorted = null; // Head of sorted list
         Employee current = head;
@@ -43,7 +43,7 @@ public class EmployeeLinkedList {
         return sorted;
     }
 
-    void display() {
+    public void display() {
         Employee temp = head;
         while (temp != null) {
             System.out.println("Name: " + temp.getName() + ", Age: " + temp.getAge() + ", Salary: " + temp.getSalary());
